@@ -1,13 +1,13 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 
 import Routes from './routes';
+import {AppContext} from './contexts';
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <AppContext>
       <Routes />
-    </NavigationContainer>
+    </AppContext>
   );
 };
 

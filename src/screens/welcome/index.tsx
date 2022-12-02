@@ -7,6 +7,7 @@ import * as S from './styles';
 
 const Welcome: React.FC = () => {
   const {navigate} = useNavigation();
+
   return (
     <S.Container>
       <S.Image source={Logo} />

@@ -1,38 +1,61 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, {createContext, useCallback, useContext, useState} from 'react';
 import FirstStep from './steps/firstStep';
-import HeaderArrowBack from '../../components/HeaderArrowBack';
-import Stepper from '../../components/Stepper';
 
-import * as S from './styles';
+interface Context {
+  currentStep: number;
+  totalStep: number;
+  incrementStep(): void;
+  decrementStep(): void;
+}
 
-const SignUp: React.FC = () => {
-  const {goBack} = useNavigation();
-  const [stepperCounter, setStepperCounter] = useState(1);
+const SignUpStack = createNativeStackNavigator();
 
-  const nextStep = () => {
-    setStepperCounter(oldState => oldState + 1);
-  };
+const SignUpContext = createContext({} as Context);
 
-  const previousStep = () => {
-    if (stepperCounter === 1) {
-      return goBack();
+export const SignUp: React.FC = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [totalStep] = useState(4);
+
+  const incrementStep = useCallback(() => {
+    if (currentStep === totalStep) {
+      return;
     }
-    setStepperCounter(oldState => oldState - 1);
+
+    setCurrentStep(currentStep + 1);
+  }, [currentStep, totalStep]);
+
+  const decrementStep = useCallback(() => {
+    if (currentStep === 1) {
+      return;
+    }
+
+    setCurrentStep(currentStep - 1);
+  }, [currentStep]);
+
+  const contextValues = {
+    incrementStep,
+    decrementStep,
+    currentStep,
+    totalStep,
   };
 
   return (
-    <S.Container>
-      <HeaderArrowBack actionBack={previousStep} />
-
-      <S.StepperWrapper>
-        <Stepper maxSteps={8} stepper={stepperCounter} />
-      </S.StepperWrapper>
-
-      <FirstStep nextStep={nextStep} />
-    </S.Container>
+    <SignUpContext.Provider value={contextValues}>
+      <SignUpStack.Navigator screenOptions={{headerShown: false}}>
+        <SignUpStack.Screen name="FirstStep" component={FirstStep} />
+        <SignUpStack.Screen name="SecondStep" component={FirstStep} />
+      </SignUpStack.Navigator>
+    </SignUpContext.Provider>
   );
 };
 
-export default SignUp;
+export const useSignUp = (): Context => {
+  const context = useContext(SignUpContext);
+
+  if (!context) {
+    throw new Error('useSignUp must be used within an SignUp page');
+  }
+
+  return context;
+};

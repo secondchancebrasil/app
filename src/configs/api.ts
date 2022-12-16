@@ -1,1 +1,5 @@
-export const api = {baseURL: 'https://'};
+import axios from 'axios';
+
+export const api = axios.create({
+  baseURL: 'https://',
+});

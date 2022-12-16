@@ -1,4 +1,8 @@
 export type SignInStackParams = {
-  FirstStep: undefined;
-  SecondStep: undefined;
+  PhoneStep: undefined;
+  EmailStep: undefined;
+  NameStep: undefined;
+  BirthDateStep: undefined;
+  PasswordStep: undefined;
+  Success: undefined;
 };

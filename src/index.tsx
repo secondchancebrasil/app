@@ -1,13 +1,18 @@
 import React from 'react';
 
+import * as eva from '@eva-design/eva';
+import {ApplicationProvider} from '@ui-kitten/components';
+
 import Routes from './routes';
 import {AppContext} from './contexts';
 
 const App = () => {
   return (
-    <AppContext>
-      <Routes />
-    </AppContext>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <AppContext>
+        <Routes />
+      </AppContext>
+    </ApplicationProvider>
   );
 };
 

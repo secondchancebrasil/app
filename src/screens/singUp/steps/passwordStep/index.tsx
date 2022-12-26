@@ -11,6 +11,7 @@ import Stepper from '../../../../components/Stepper';
 import * as S from './styles';
 import {validationSchema} from './validations';
 import {AxiosError} from 'axios';
+import {SafeArea} from '../../../../components/SafeAreaView';
 
 interface FormValues {
   password: string;
@@ -59,71 +60,73 @@ const PasswordStep: React.FC<PasswordStepProps> = ({}) => {
   };
 
   return (
-    <S.Container>
-      <HeaderArrowBack actionBack={previousStep} />
+    <SafeArea>
+      <S.Container>
+        <HeaderArrowBack actionBack={previousStep} />
 
-      <S.StepperWrapper>
-        <Stepper maxSteps={totalStep} stepper={currentStep} />
-      </S.StepperWrapper>
+        <S.StepperWrapper>
+          <Stepper maxSteps={totalStep} stepper={currentStep} />
+        </S.StepperWrapper>
 
-      <Formik<FormValues>
-        initialValues={formikInitialValues}
-        onSubmit={submit}
-        validationSchema={validationSchema}>
-        {({handleSubmit, errors, values, handleChange}) => (
-          <S.ContentContainer>
-            <View>
-              <S.TitleText>Senha</S.TitleText>
-              <S.SubTitleText>Cadastre sua senha</S.SubTitleText>
-              <S.WrapInput>
-                <S.NameInput
-                  keyboardType="default"
-                  placeholder="Digite uma senha"
-                  value={values.password}
-                  onChangeText={handleChange('password')}
-                  maxLength={8}
-                  secureTextEntry
-                />
-                {errors.password && (
-                  <S.NameInputErrorText>
-                    * {errors.password}
-                  </S.NameInputErrorText>
-                )}
-              </S.WrapInput>
+        <Formik<FormValues>
+          initialValues={formikInitialValues}
+          onSubmit={submit}
+          validationSchema={validationSchema}>
+          {({handleSubmit, errors, values, handleChange}) => (
+            <S.ContentContainer>
+              <View>
+                <S.TitleText>Senha</S.TitleText>
+                <S.SubTitleText>Cadastre sua senha</S.SubTitleText>
+                <S.WrapInput>
+                  <S.PasswordInput
+                    keyboardType="default"
+                    placeholder="Digite uma senha"
+                    value={values.password}
+                    onChangeText={handleChange('password')}
+                    maxLength={8}
+                    secureTextEntry
+                  />
+                  {errors.password && (
+                    <S.PasswordInputErrorText>
+                      * {errors.password}
+                    </S.PasswordInputErrorText>
+                  )}
+                </S.WrapInput>
 
-              <S.WrapInput>
-                <S.NameInput
-                  keyboardType="default"
-                  placeholder="Confirme sua senha"
-                  value={values.passwordConfirmation}
-                  maxLength={8}
-                  onChangeText={handleChange('passwordConfirmation')}
-                  secureTextEntry
-                />
-                {errors.passwordConfirmation && (
-                  <S.NameInputErrorText>
-                    * {errors.passwordConfirmation}
-                  </S.NameInputErrorText>
-                )}
-              </S.WrapInput>
-            </View>
+                <S.WrapInput>
+                  <S.PasswordInput
+                    keyboardType="default"
+                    placeholder="Confirme sua senha"
+                    value={values.passwordConfirmation}
+                    maxLength={8}
+                    onChangeText={handleChange('passwordConfirmation')}
+                    secureTextEntry
+                  />
+                  {errors.passwordConfirmation && (
+                    <S.PasswordInputErrorText>
+                      * {errors.passwordConfirmation}
+                    </S.PasswordInputErrorText>
+                  )}
+                </S.WrapInput>
+              </View>
 
-            <S.ContinueButton
-              onPress={handleSubmit}
-              disabled={
-                !values.password ||
-                !values.passwordConfirmation ||
-                Object.keys(errors).length !== 0 ||
-                loading
-              }>
-              <S.ContinueButtonText>
-                {loading ? <ActivityIndicator /> : 'CONTINUAR'}
-              </S.ContinueButtonText>
-            </S.ContinueButton>
-          </S.ContentContainer>
-        )}
-      </Formik>
-    </S.Container>
+              <S.ContinueButton
+                onPress={handleSubmit}
+                disabled={
+                  !values.password ||
+                  !values.passwordConfirmation ||
+                  Object.keys(errors).length !== 0 ||
+                  loading
+                }>
+                <S.ContinueButtonText>
+                  {loading ? <ActivityIndicator /> : 'CONTINUAR'}
+                </S.ContinueButtonText>
+              </S.ContinueButton>
+            </S.ContentContainer>
+          )}
+        </Formik>
+      </S.Container>
+    </SafeArea>
   );
 };
 

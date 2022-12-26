@@ -9,6 +9,7 @@ import {validationSchema} from './validations';
 import {useSignUp} from '../..';
 import HeaderArrowBack from '../../../../components/HeaderArrowBack';
 import Stepper from '../../../../components/Stepper';
+import {SafeArea} from '../../../../components/SafeAreaView';
 
 interface FormValues {
   birthDate: Date | null;
@@ -45,52 +46,54 @@ const BirthDateStep: React.FC = ({}) => {
   };
 
   return (
-    <S.Container>
-      <HeaderArrowBack actionBack={previousStep} />
+    <SafeArea>
+      <S.Container>
+        <HeaderArrowBack actionBack={previousStep} />
 
-      <S.StepperWrapper>
-        <Stepper maxSteps={totalStep} stepper={currentStep} />
-      </S.StepperWrapper>
+        <S.StepperWrapper>
+          <Stepper maxSteps={totalStep} stepper={currentStep} />
+        </S.StepperWrapper>
 
-      <Formik<FormValues>
-        initialValues={formikInitialValues}
-        onSubmit={submit}
-        validationSchema={validationSchema}>
-        {({handleSubmit, errors, values, setFieldValue}) => (
-          <S.ContentContainer>
-            <View>
-              <S.TitleText>Data de nascimento</S.TitleText>
-              <S.SubTitleText>
-                O Second Chance é uma plataforma para maiores de 30 anos
-              </S.SubTitleText>
+        <Formik<FormValues>
+          initialValues={formikInitialValues}
+          onSubmit={submit}
+          validationSchema={validationSchema}>
+          {({handleSubmit, errors, values, setFieldValue}) => (
+            <S.ContentContainer>
+              <View>
+                <S.TitleText>Data de nascimento</S.TitleText>
+                <S.SubTitleText>
+                  O Second Chance é uma plataforma para maiores de 30 anos
+                </S.SubTitleText>
 
-              <S.WrapInput>
-                <DatePicker
-                  size="large"
-                  date={values.birthDate}
-                  onSelect={value => setFieldValue('birthDate', value)}
-                  placeholder="DD/MM/AAAA"
-                  min={new Date('1930-01-01')}
-                  max={new Date(`${new Date().getFullYear() - 29}-01-01`)}
-                />
+                <S.WrapInput>
+                  <DatePicker
+                    size="large"
+                    date={values.birthDate}
+                    onSelect={value => setFieldValue('birthDate', value)}
+                    placeholder="DD/MM/AAAA"
+                    min={new Date('1930-01-01')}
+                    max={new Date(`${new Date().getFullYear() - 29}-01-01`)}
+                  />
 
-                {errors.birthDate && (
-                  <S.InputErrorText>
-                    * {String(errors.birthDate)}
-                  </S.InputErrorText>
-                )}
-              </S.WrapInput>
-            </View>
+                  {errors.birthDate && (
+                    <S.InputErrorText>
+                      * {String(errors.birthDate)}
+                    </S.InputErrorText>
+                  )}
+                </S.WrapInput>
+              </View>
 
-            <S.ContinueButton
-              onPress={handleSubmit}
-              disabled={!values.birthDate}>
-              <S.ContinueButtonText>CONTINUAR</S.ContinueButtonText>
-            </S.ContinueButton>
-          </S.ContentContainer>
-        )}
-      </Formik>
-    </S.Container>
+              <S.ContinueButton
+                onPress={handleSubmit}
+                disabled={!values.birthDate}>
+                <S.ContinueButtonText>CONTINUAR</S.ContinueButtonText>
+              </S.ContinueButton>
+            </S.ContentContainer>
+          )}
+        </Formik>
+      </S.Container>
+    </SafeArea>
   );
 };
 

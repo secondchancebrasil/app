@@ -9,6 +9,7 @@ import Stepper from '../../../../components/Stepper';
 import * as S from './styles';
 import {validationSchema} from './validations';
 import {View} from 'react-native';
+import {SafeArea} from '../../../../components/SafeAreaView';
 
 interface FormValues {
   email: string;
@@ -36,46 +37,48 @@ const EmailStep: React.FC<EmailStepProps> = ({}) => {
   };
 
   return (
-    <S.Container>
-      <HeaderArrowBack actionBack={previousStep} />
+    <SafeArea>
+      <S.Container>
+        <HeaderArrowBack actionBack={previousStep} />
 
-      <S.StepperWrapper>
-        <Stepper maxSteps={totalStep} stepper={currentStep} />
-      </S.StepperWrapper>
+        <S.StepperWrapper>
+          <Stepper maxSteps={totalStep} stepper={currentStep} />
+        </S.StepperWrapper>
 
-      <Formik<FormValues>
-        initialValues={formikInitialValues}
-        onSubmit={submit}
-        validationSchema={validationSchema}>
-        {({handleSubmit, values, handleChange, errors}) => (
-          <S.ContentContainer>
-            <View>
-              <S.TitleText>Qual é o seu email?</S.TitleText>
-              <S.WrapInput>
-                <S.EmailInput
-                  keyboardType="email-address"
-                  placeholder="Digite seu email"
-                  value={values.email}
-                  autoCapitalize="none"
-                  onChangeText={handleChange('email')}
-                />
-                {errors.email && (
-                  <S.EmailInputErrorText>
-                    * {errors.email}
-                  </S.EmailInputErrorText>
-                )}
-              </S.WrapInput>
-            </View>
+        <Formik<FormValues>
+          initialValues={formikInitialValues}
+          onSubmit={submit}
+          validationSchema={validationSchema}>
+          {({handleSubmit, values, handleChange, errors}) => (
+            <S.ContentContainer>
+              <View>
+                <S.TitleText>Qual é o seu email?</S.TitleText>
+                <S.WrapInput>
+                  <S.EmailInput
+                    keyboardType="email-address"
+                    placeholder="Digite seu email"
+                    value={values.email}
+                    autoCapitalize="none"
+                    onChangeText={handleChange('email')}
+                  />
+                  {errors.email && (
+                    <S.EmailInputErrorText>
+                      * {errors.email}
+                    </S.EmailInputErrorText>
+                  )}
+                </S.WrapInput>
+              </View>
 
-            <S.ContinueButton
-              onPress={handleSubmit}
-              disabled={!values.email || Object.keys(errors).length !== 0}>
-              <S.ContinueButtonText>CONTINUAR</S.ContinueButtonText>
-            </S.ContinueButton>
-          </S.ContentContainer>
-        )}
-      </Formik>
-    </S.Container>
+              <S.ContinueButton
+                onPress={handleSubmit}
+                disabled={!values.email || Object.keys(errors).length !== 0}>
+                <S.ContinueButtonText>CONTINUAR</S.ContinueButtonText>
+              </S.ContinueButton>
+            </S.ContentContainer>
+          )}
+        </Formik>
+      </S.Container>
+    </SafeArea>
   );
 };
 

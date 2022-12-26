@@ -4,10 +4,7 @@ export const Container = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
-  padding: 0 26px;
-  /* TODO remove padding top */
-  padding-top: 64px;
-  padding-bottom: 32px;
+  padding: 16px 26px;
 `;
 
 export const ContentContainer = styled.View`

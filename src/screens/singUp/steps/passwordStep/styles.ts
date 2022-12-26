@@ -4,10 +4,7 @@ export const Container = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
-  padding: 0 26px;
-  /* TODO remove padding */
-  padding-top: 64px;
-  padding-bottom: 32px;
+  padding: 16px 26px;
 `;
 
 export const ContentContainer = styled.View`
@@ -35,12 +32,12 @@ export const WrapInput = styled.View`
   margin-bottom: 48px;
 `;
 
-export const NameInputErrorText = styled.Text`
+export const PasswordInputErrorText = styled.Text`
   margin-left: 6px;
   color: #fd3c5a;
 `;
 
-export const NameInput = styled.TextInput`
+export const PasswordInput = styled.TextInput`
   padding-bottom: 12px;
   border-bottom-width: 1px;
   border-bottom-color: #666666;

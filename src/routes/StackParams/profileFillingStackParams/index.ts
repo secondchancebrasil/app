@@ -1,0 +1,9 @@
+export type ProfileFillingStackParams = {
+  SocialClass: undefined;
+  AffirmationLoves: undefined;
+  GiftLoves: undefined;
+  TimeLoves: undefined;
+  GesturesLoves: undefined;
+  TouchLoves: undefined;
+  Summary: undefined;
+};

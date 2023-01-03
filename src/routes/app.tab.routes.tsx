@@ -10,7 +10,7 @@ import Sooner from '../screens/sooner';
 
 const Tab = createBottomTabNavigator();
 
-export function TabBottomNavigator() {
+export const TabBottomNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -26,4 +26,4 @@ export function TabBottomNavigator() {
       <Tab.Screen name="Qr Code" component={Sooner} />
     </Tab.Navigator>
   );
-}
+};

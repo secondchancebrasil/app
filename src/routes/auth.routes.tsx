@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignUp} from '../screens/singUp';
 import SignIn from '../screens/singIn';
@@ -6,7 +6,7 @@ import Welcome from '../screens/welcome';
 
 const AuthStack = createNativeStackNavigator();
 
-export const AuthRoutes = (): ReactElement => {
+export const AuthRoutes = () => {
   return (
     <AuthStack.Navigator
       screenOptions={{

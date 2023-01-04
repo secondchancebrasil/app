@@ -7,8 +7,8 @@ import {Formik} from 'formik';
 import * as S from './styles';
 import {validationSchema} from './validations';
 import {useSignUp} from '../..';
-import HeaderArrowBack from '../../../../components/HeaderArrowBack';
-import Stepper from '../../../../components/Stepper';
+import {HeaderArrowBack} from '../../../../components/HeaderArrowBack';
+import {Stepper} from '../../../../components/Stepper';
 import {SafeArea} from '../../../../components/SafeAreaView';
 
 interface FormValues {

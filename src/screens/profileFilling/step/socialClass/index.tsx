@@ -5,7 +5,7 @@ import {Radio, RadioGroup} from '@ui-kitten/components';
 
 import {useProfileFilling} from '../..';
 import {SafeArea} from '../../../../components/SafeAreaView';
-import Stepper from '../../../../components/Stepper';
+import {Stepper} from '../../../../components/Stepper';
 
 import * as S from './styles';
 

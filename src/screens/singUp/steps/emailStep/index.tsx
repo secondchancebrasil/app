@@ -3,8 +3,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 
 import {useSignUp} from '../..';
-import HeaderArrowBack from '../../../../components/HeaderArrowBack';
-import Stepper from '../../../../components/Stepper';
+import {HeaderArrowBack} from '../../../../components/HeaderArrowBack';
+import {Stepper} from '../../../../components/Stepper';
 
 import * as S from './styles';
 import {validationSchema} from './validations';

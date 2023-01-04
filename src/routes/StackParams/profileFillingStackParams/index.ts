@@ -6,4 +6,6 @@ export type ProfileFillingStackParams = {
   GesturesLoves: undefined;
   TouchLoves: undefined;
   Summary: undefined;
+  DescriptionProfile: undefined;
+  AddPicture: undefined;
 };

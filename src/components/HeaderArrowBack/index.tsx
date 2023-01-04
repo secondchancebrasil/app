@@ -9,7 +9,9 @@ interface HeaderArrowBackProps {
   actionBack(): void;
 }
 
-const HeaderArrowBack: React.FC<HeaderArrowBackProps> = ({actionBack}) => {
+export const HeaderArrowBack: React.FC<HeaderArrowBackProps> = ({
+  actionBack,
+}) => {
   return (
     <S.Container>
       <TouchableOpacity onPress={actionBack}>
@@ -18,5 +20,3 @@ const HeaderArrowBack: React.FC<HeaderArrowBackProps> = ({actionBack}) => {
     </S.Container>
   );
 };
-
-export default HeaderArrowBack;

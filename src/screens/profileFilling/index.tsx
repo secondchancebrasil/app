@@ -1,6 +1,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {createContext, useCallback, useContext, useState} from 'react';
+import AddPicture from './step/addPicture';
 import AffirmationLoves from './step/affirmationLoves';
+import DescriptionProfile from './step/descriptionProfile';
 import GesturesLoves from './step/gesturesLoves';
 import GiftLoves from './step/giftLoves';
 import SocialClass from './step/socialClass';
@@ -19,6 +21,15 @@ interface ProfileProps {
   touchLove: ValueLoves;
 }
 
+const INITIAL_VALUE_PROFILE_PROPS: ProfileProps = {
+  socialClass: '',
+  affirmationLove: 0,
+  giftLove: 0,
+  timeLove: 0,
+  gesturesLove: 0,
+  touchLove: 0,
+};
+
 interface Context {
   currentStep: number;
   totalStep: number;
@@ -35,7 +46,7 @@ const ProfileFillingContext = createContext({} as Context);
 export const ProfileFilling = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [profileData, setProfileData] = useState<ProfileProps>(
-    {} as ProfileProps,
+    INITIAL_VALUE_PROFILE_PROPS,
   );
   const [totalStep] = useState(7);
 
@@ -87,6 +98,11 @@ export const ProfileFilling = () => {
         />
         <ProfileFillingStack.Screen name="TouchLoves" component={TouchLove} />
         <ProfileFillingStack.Screen name="Summary" component={Summary} />
+        <ProfileFillingStack.Screen
+          name="DescriptionProfile"
+          component={DescriptionProfile}
+        />
+        <ProfileFillingStack.Screen name="AddPicture" component={AddPicture} />
       </ProfileFillingStack.Navigator>
     </ProfileFillingContext.Provider>
   );

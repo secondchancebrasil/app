@@ -10,6 +10,7 @@ interface SafeAreaViewProps {
 
 export const SafeArea = styled.SafeAreaView<SafeAreaViewProps>`
   flex: 1;
+  position: relative;
   margin-top: ${android ? `${StatusBar.currentHeight}px` : '0'};
   background-color: ${({backgroundColor}) =>
     backgroundColor ? backgroundColor : '#FFF'};

@@ -1,10 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import HeaderArrowBack from '../../../../components/HeaderArrowBack';
 
+import {HeaderArrowBack} from '../../../../components/HeaderArrowBack';
 import {SafeArea} from '../../../../components/SafeAreaView';
-import {Text} from '../../../../components/Text';
+import {LoversMapper} from '../../../../components/LoversMapper';
 
 import {useProfileFilling} from '../..';
 
@@ -15,8 +15,15 @@ const Summary = () => {
   const {profileData} = useProfileFilling();
 
   const handleSubmit = () => {
-    console.log('enviado', profileData);
-    navigate('TabNavigator');
+    try {
+      console.log('enviado', profileData);
+      navigate('DescriptionProfile');
+    } catch (error) {
+      Alert.alert(
+        'Náo foi possível enviar os dados',
+        'Algo está dando errado, por favor tente mais tarde',
+      );
+    }
   };
 
   const previousStep = () => {
@@ -41,6 +48,8 @@ const Summary = () => {
               questionário!
             </S.Subtitle>
             <S.Subtitle size={18}>Boas chances!</S.Subtitle>
+
+            <LoversMapper typeLovesData={profileData} />
           </View>
 
           <S.ContinueButton onPress={handleSubmit}>

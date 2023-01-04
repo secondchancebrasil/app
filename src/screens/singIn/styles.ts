@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import HeaderArrowBack from '../../components/HeaderArrowBack';
+import {HeaderArrowBack} from '../../components/HeaderArrowBack';
 import {Text} from '../../components/Text';
 
 export const Container = styled.View`

@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import {useSignUp} from '../..';
-import HeaderArrowBack from '../../../../components/HeaderArrowBack';
-import Stepper from '../../../../components/Stepper';
+import {HeaderArrowBack} from '../../../../components/HeaderArrowBack';
+import {Stepper} from '../../../../components/Stepper';
 
 import * as S from './styles';
 

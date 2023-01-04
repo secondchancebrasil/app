@@ -1,10 +1,10 @@
 import React, {useMemo, useState} from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import HeaderArrowBack from '../../../../components/HeaderArrowBack';
+import {HeaderArrowBack} from '../../../../components/HeaderArrowBack';
 
 import {SafeArea} from '../../../../components/SafeAreaView';
-import Stepper from '../../../../components/Stepper';
+import {Stepper} from '../../../../components/Stepper';
 import {Text} from '../../../../components/Text';
 
 import {useProfileFilling, ValueLoves} from '../..';

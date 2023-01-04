@@ -7,7 +7,7 @@ interface StepperProps {
   stepper: number;
 }
 
-const Stepper: React.FC<StepperProps> = ({maxSteps = 0, stepper}) => {
+export const Stepper: React.FC<StepperProps> = ({maxSteps = 0, stepper}) => {
   const steps = Array(maxSteps).fill(0);
 
   return (
@@ -18,5 +18,3 @@ const Stepper: React.FC<StepperProps> = ({maxSteps = 0, stepper}) => {
     </S.Container>
   );
 };
-
-export default Stepper;

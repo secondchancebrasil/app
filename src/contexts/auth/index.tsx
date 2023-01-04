@@ -25,16 +25,16 @@ export const AuthProvider = ({children}: AuthProps): JSX.Element => {
 
   useEffect(() => {
     (async () => {
-      const storagedUser = await loadStorage<User | null>({key: USER_KEY});
-      const storagedToken = await loadStorage<string>({key: TOKEN_KEY});
+      const storageUser = await loadStorage<User | null>({key: USER_KEY});
+      const storageToken = await loadStorage<string>({key: TOKEN_KEY});
 
-      if (storagedToken && storagedUser) {
-        api.defaults.headers.authorization = `Bearer ${storagedToken}`;
+      if (storageToken && storageUser) {
+        api.defaults.headers.authorization = `Bearer ${storageToken}`;
 
         const {data: updatedUser} = await UsersServices.show();
 
         setUser(updatedUser);
-        setToken(storagedToken);
+        setToken(storageToken);
       }
 
       setLoadedAuth(true);

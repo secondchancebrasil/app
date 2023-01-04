@@ -7,5 +7,6 @@ export const store = async (
   credentials: SessionCredentials,
 ): Promise<AxiosResponse<Session>> => {
   const response = await api.post<Session>('/auth/login', credentials);
+  console.log('/auth/login : response', response);
   return response;
 };

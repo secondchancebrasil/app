@@ -33,8 +33,8 @@ const NameStep: React.FC<NameStepProps> = ({}) => {
   };
 
   const submit = ({name}: FormValues) => {
-    console.log(name);
     updateUserData({...userData, name});
+    console.log({...userData, name});
     incrementStep();
     navigate('BirthDateStep');
   };

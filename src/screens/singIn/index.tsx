@@ -1,9 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {useState} from 'react';
-import {ActivityIndicator, Alert, Text, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 
 import {SafeArea} from '../../components/SafeAreaView';
+import {useAuth} from '../../hooks';
 
 import * as S from './styles';
 import {validationSchema} from './validations';
@@ -15,10 +16,13 @@ const formikInitialValues = {
 
 interface FormValues {
   email: string;
+
   password: string;
 }
 
 const SignIn = () => {
+  const {signIn} = useAuth();
+
   const [loading, setLoading] = useState(false);
   const {goBack} = useNavigation();
 
@@ -26,11 +30,9 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      // await
-    } catch (error) {
-      const errorMessage = 'Verifique os campos';
-
-      Alert.alert('Não foi possível fazer o login', errorMessage);
+      // TODO await
+      await signIn({email, password});
+    } catch {
     } finally {
       setLoading(false);
     }
@@ -69,6 +71,7 @@ const SignIn = () => {
               <S.ContinueButton
                 onPress={handleSubmit}
                 disabled={
+                  !values.email ||
                   !values.password ||
                   Object.keys(errors).length !== 0 ||
                   loading
